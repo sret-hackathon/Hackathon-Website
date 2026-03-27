@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Platform | Verify Email</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <div class="centered-layout">
+    <div class="glass-card text-center animate-slide-up" style="max-width: 500px; width: 100%;">
+      
+      <!-- Loading State -->
+      <div id="loading-state">
+        <span class="loader mb-sm" style="width: 40px; height: 40px; border-width: 4px;"></span>
+        <h2 class="mt-sm">Verifying Email...</h2>
+        <p class="text-secondary">Please wait while we confirm your team membership.</p>
+      </div>
+
+      <!-- Success State -->
+      <div id="success-state" class="hidden">
+        <div class="toast-icon mx-auto mb-md" style="width: 64px; height: 64px; background: rgba(0, 242, 96, 0.1); color: var(--success); display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 32px; margin: 0 auto;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2 class="mb-sm text-gradient">Email Verified!</h2>
+        <p class="text-secondary mb-lg">You are now officially a verified member of your team for the Hackathon.</p>
+        <p class="text-muted">You can close this tab now.</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-state" class="hidden">
+        <div class="toast-icon mx-auto mb-md" style="width: 64px; height: 64px; background: rgba(255, 75, 75, 0.1); color: var(--error); display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 32px; margin: 0 auto;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <h2 class="mb-sm">Verification Failed</h2>
+        <p id="error-message" class="text-secondary mb-lg">The verification link is invalid or has expired.</p>
+        <a href="index.html" class="btn btn-outline">Go to Homepage</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/verify.js"></script>
+
+</body>
+</html>

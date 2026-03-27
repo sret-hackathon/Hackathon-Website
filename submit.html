@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Platform | Submit Project</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      HackClub
+    </div>
+    <div class="navbar-nav">
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="main-content container animate-fade-in">
+    <div class="glass-card mx-auto" style="max-width: 600px; margin: 0 auto;">
+      <h2 class="mb-sm">Submit Your Project</h2>
+      <p class="text-secondary mb-lg">You've done the hard work, now show it to the world. Please provide your Google Drive PPT link and a brief project description.</p>
+
+      <!-- Pre-submission Loader / Checks -->
+      <div id="loading-state" class="text-center py-md">
+        <span class="loader"></span>
+        <p class="text-secondary mt-sm">Checking team eligibility...</p>
+      </div>
+
+      <!-- Eligibility Error State -->
+      <div id="error-state" class="glass-panel text-center hidden" style="border-color: rgba(255, 75, 75, 0.3); background: rgba(255, 75, 75, 0.05);">
+        <svg class="mx-auto mb-sm" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <h3 class="mb-sm" style="color: var(--error);">Cannot Submit Yet</h3>
+        <p id="error-message" class="text-secondary mb-md">You need to have a verified team before submitting.</p>
+        <a href="dashboard.html" class="btn btn-outline">Go Back</a>
+      </div>
+
+      <!-- Submission Form -->
+      <form id="submit-form" class="hidden">
+        
+        <div class="glass-panel mb-lg">
+          <div class="form-group">
+            <label class="form-label" for="drive-link">Google Drive Link (PPT)</label>
+            <input type="url" id="drive-link" class="form-control" placeholder="https://docs.google.com/presentation/d/..." required pattern="https://.*">
+            <span class="text-muted" style="font-size: 0.8rem; display: block; margin-top: 0.5rem;">Ensure the link access is set to "Anyone with the link can view".</span>
+          </div>
+
+          <div class="form-group mb-0">
+            <label class="form-label" for="project-desc">Project Description</label>
+            <textarea id="project-desc" class="form-control" placeholder="Briefly describe what you built, the tech stack, and the problem it solves." rows="5" required minlength="50"></textarea>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <a href="dashboard.html" class="text-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary" id="submit-btn" style="min-width: 150px;">Submit Project</button>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/submit.js"></script>
+
+</body>
+</html>

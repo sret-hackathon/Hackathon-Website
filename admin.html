@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Platform | Admin Control Panel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Admin Specific Styling */
+    .admin-nav {
+      background: rgba(138, 43, 226, 0.1);
+      border-bottom: 2px solid var(--accent-purple);
+    }
+    .data-tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: var(--space-lg);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab-btn.active {
+      color: var(--accent-blue);
+      border-bottom-color: var(--accent-blue);
+    }
+    .tab-btn:hover:not(.active) {
+      color: var(--text-primary);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar admin-nav">
+    <div class="navbar-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      HackClub | <span style="font-weight: 400; font-size: 1.2rem; color: var(--accent-purple); margin-left: 0.5rem;">Admin</span>
+    </div>
+    <div class="navbar-nav">
+      <span class="nav-link hidden" id="admin-badge" style="color: var(--success); font-weight: 600;">System Administrator</span>
+      <button id="logout-btn" class="btn btn-outline btn-sm">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="main-content container animate-fade-in" style="max-width: 1400px;">
+    
+    <div id="loading-state" class="text-center py-xl">
+      <span class="loader"></span>
+      <p class="text-secondary mt-sm">Fetching all hackathon data...</p>
+    </div>
+
+    <div id="admin-panel" class="hidden">
+      <!-- Tabs -->
+      <div class="data-tabs">
+        <button class="tab-btn active" data-target="teams-tab">Registered Teams (<span id="teams-count">0</span>)</button>
+        <button class="tab-btn" data-target="submissions-tab">Submissions (<span id="submissions-count">0</span>)</button>
+      </div>
+
+      <!-- Teams Tab -->
+      <div id="teams-tab" class="tab-content active glass-card" style="padding: 0;">
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Leader details</th>
+                <th>Members</th>
+                <th>Verified</th>
+                <th>Registered Init</th>
+              </tr>
+            </thead>
+            <tbody id="teams-table-body">
+              <!-- Dynamically populated teams -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Submissions Tab -->
+      <div id="submissions-tab" class="tab-content glass-card" style="padding: 0;">
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Drive Link (PPT)</th>
+                <th>Project Description</th>
+                <th>Submitted At</th>
+              </tr>
+            </thead>
+            <tbody id="submissions-table-body">
+              <!-- Dynamically populated submissions -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/admin.js"></script>
+
+</body>
+</html>

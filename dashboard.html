@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Platform | Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .countdown-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+      min-width: 80px;
+    }
+    .countdown-value {
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: var(--accent-blue);
+    }
+    .countdown-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      HackClub
+    </div>
+    <div class="navbar-nav">
+      <span id="user-display-name" class="nav-link hidden" style="cursor: default;">Welcome, Leader</span>
+      <button id="logout-btn" class="btn btn-outline btn-sm">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="main-content container animate-fade-in">
+    
+    <!-- Grid Layout: Hackathon Info (Left) | Team Status (Right) -->
+    <div style="display: grid; grid-template-columns: 3fr 2fr; gap: var(--space-xl);" id="dashboard-grid">
+      
+      <!-- Left Column: Hackathon Details -->
+      <div class="flex" style="flex-direction: column; gap: var(--space-lg);">
+        <div class="glass-card">
+          <div class="flex items-center justify-between mb-xl">
+            <div>
+              <h2 class="text-gradient">HackClub Innovation Challenge</h2>
+              <p class="text-secondary mt-sm">Build the future of decentralized tech.</p>
+            </div>
+            <a href="submit.html" class="btn btn-primary">Go to Submission</a>
+          </div>
+
+          <div class="glass-panel mb-lg">
+            <h3 class="mb-sm">Problem Statement</h3>
+            <p class="text-secondary">
+              Design and develop a high-performance web application that solves a real-world local problem using modern technologies. 
+              The solution should be modular, scalable, and demonstrate excellent UX/UI principles.
+            </p>
+          </div>
+
+          <div class="glass-panel">
+            <h3 class="mb-sm">Rules & Guidelines</h3>
+            <ul class="text-secondary" style="margin-left: var(--space-md);">
+              <li class="mb-xs">Maximum 4 team members + 1 leader.</li>
+              <li class="mb-xs">All members must verify their email to be eligible.</li>
+              <li class="mb-xs">Only the team leader can submit the PPT via Google Drive link.</li>
+              <li>Plagiarism will result in immediate disqualification.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timer Card -->
+        <div class="glass-card text-center" style="padding: var(--space-lg);">
+          <h3 class="mb-md">Submission Deadline</h3>
+          <div class="flex justify-center gap-md">
+            <div class="countdown-box">
+              <div class="countdown-value" id="timer-days">00</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-value" id="timer-hours">00</div>
+              <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-value" id="timer-minutes">00</div>
+              <div class="countdown-label">Mins</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-value" id="timer-seconds">00</div>
+              <div class="countdown-label">Secs</div>
+            </div>
+          </div>
+          <p class="text-muted mt-md">April 10th, 23:59 IST</p>
+        </div>
+      </div>
+
+      <!-- Right Column: Team Status -->
+      <div>
+        <!-- Loading State for Team -->
+        <div id="team-loading" class="glass-card text-center py-xl">
+          <span class="loader"></span>
+          <p class="text-secondary mt-sm">Loading team data...</p>
+        </div>
+
+        <!-- Empty State (No Team Created) -->
+        <div id="team-empty" class="glass-card text-center hidden" style="padding: var(--space-xl) var(--space-md);">
+          <div class="toast-icon mx-auto mb-md" style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 class="mb-sm">No Team Yet</h3>
+          <p class="text-secondary mb-lg">You need to create a team before participating.</p>
+          <a href="team.html" class="btn btn-primary">Create Team Now</a>
+        </div>
+
+        <!-- Populated State (Team Exists) -->
+        <div id="team-details" class="glass-card hidden">
+          <div class="flex justify-between items-center mb-md border-bottom" style="padding-bottom: var(--space-sm); border-bottom: 1px solid var(--border-light);">
+            <h3 id="display-team-name">Team Name</h3>
+            <span class="badge badge-verified">Registered</span>
+          </div>
+
+          <p class="text-secondary mb-sm" style="font-size: 0.9rem;">Leader</p>
+          <div class="glass-panel flex justify-between items-center mb-lg" style="padding: var(--space-sm) var(--space-md);">
+            <div>
+              <div class="font-weight-600 text-primary" id="display-leader-name">Leader Name</div>
+              <div class="text-muted" style="font-size: 0.8rem;" id="display-leader-email">leader@email.com</div>
+            </div>
+          </div>
+
+          <p class="text-secondary mb-sm" style="font-size: 0.9rem;">Team Members</p>
+          <div id="members-list-container" class="flex" style="flex-direction: column; gap: var(--space-xs);">
+            <!-- Members injected dynamically here -->
+          </div>
+          
+          <div class="mt-lg pt-sm" style="border-top: 1px solid var(--border-light);">
+            <p class="text-muted" style="font-size: 0.8rem; text-align: center;">
+              Check your emails for verification links. All members must be verified.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>

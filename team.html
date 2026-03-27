@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Platform | Create Team</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      HackClub
+    </div>
+    <div class="navbar-nav">
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <button id="logout-btn" class="btn btn-outline btn-sm">Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="main-content container animate-fade-in">
+    <div class="glass-card mx-auto" style="max-width: 800px; margin: 0 auto;">
+      <h2 class="mb-sm">Create Your Team</h2>
+      <p class="text-secondary mb-lg">Build your dream team for the hackathon. We'll send them a verification link via email.</p>
+
+      <form id="team-form">
+        <!-- Team Details -->
+        <div class="glass-panel mb-lg">
+          <h3 class="mb-md">Team Info</h3>
+          <div class="form-group">
+            <label class="form-label" for="team-name">Team Name</label>
+            <input type="text" id="team-name" class="form-control" placeholder="e.g. Byte Builders" required>
+          </div>
+        </div>
+
+        <!-- Members Section -->
+        <div class="glass-panel mb-lg">
+          <div class="flex items-center justify-between mb-md">
+            <h3>Team Members</h3>
+            <span class="badge badge-pending" id="member-counter">0 / 4 Added</span>
+          </div>
+          
+          <div id="members-container" class="mb-md">
+            <!-- Member inputs injected here via JS -->
+          </div>
+
+          <button type="button" id="add-member-btn" class="btn btn-outline" style="width: 100%; border-style: dashed;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Add Member
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between mt-xl">
+          <a href="dashboard.html" class="text-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary" id="submit-team-btn" disabled>Create Team</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/team.js"></script>
+
+</body>
+</html>
