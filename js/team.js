@@ -156,8 +156,8 @@ teamForm.addEventListener('submit', async (e) => {
         verify_link: verifyLink
       };
 
-      // Send email via local Python API
-      return fetch("http://localhost:5000/send-email", {
+      // Send email via live production Python API
+      return fetch("https://hackathon-website-hm6g.onrender.com/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
