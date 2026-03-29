@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import { db, auth } from '../firebase';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
-import { User, Image as ImageIcon, Briefcase, Github, Linkedin, CheckCircle, Phone, GraduationCap, School } from 'lucide-react';
+import { User, Image as ImageIcon, Briefcase, Link2, CheckCircle, Phone, GraduationCap, School } from 'lucide-react';
 
 const DEPARTMENTS = ['AIML', 'AIDA', 'Medical Engineering', 'ECE', 'Cyber Security'];
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
@@ -182,11 +182,11 @@ const Profile = () => {
                   <input type="text" className="form-control mt-1" placeholder="E.g. Fullstack React Developer" value={profile.headline} onChange={e=>setProfile({...profile, headline: e.target.value})} />
                 </div>
                 <div>
-                  <label className="text-main font-bold" style={{fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}><Github size={14}/> GitHub Profile</label>
+                  <label className="text-main font-bold" style={{fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}><Link2 size={14}/> GitHub Profile</label>
                   <input type="url" className="form-control mt-1" placeholder="https://github.com/..." value={profile.githubUrl} onChange={e=>setProfile({...profile, githubUrl: e.target.value})} />
                 </div>
                 <div>
-                  <label className="text-main font-bold" style={{fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}><Linkedin size={14}/> LinkedIn Profile</label>
+                  <label className="text-main font-bold" style={{fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}><Link2 size={14}/> LinkedIn Profile</label>
                   <input type="url" className="form-control mt-1" placeholder="https://linkedin.com/in/..." value={profile.linkedinUrl} onChange={e=>setProfile({...profile, linkedinUrl: e.target.value})} />
                 </div>
               </div>
